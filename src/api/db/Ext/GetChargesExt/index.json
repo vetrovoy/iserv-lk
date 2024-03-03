@@ -1,0 +1,36 @@
+[
+  {
+    "ExtToken": "9e23a4fb-f66a-4448-a3db-65604e49cf9b",
+    "PeriodBegin": "202101",
+    "PeriodEnd": "202112"
+  },
+  {
+    "success": true,
+    "results": [
+      {
+        "ChargeId": 512705009,
+        "SubscrId": 4034914,
+        "Period": 202105,
+        "PeriodName": "май 2021",
+        "DebtByBeginMonth": 3790.67,
+        "Amount": 3790.67,
+        "Payment": 3790.67,
+        "AmountToPay": 3790.67,
+        "ChargeDetails": [
+          {
+            "ChargeDetailId": 3687093414,
+            "GroupName": "Теплоснабжение",
+            "Name": "Отопление",
+            "Quantity": 1.561371,
+            "Tariff": 2427.78,
+            "UnitName": "ГКал",
+            "Total": 3790.67,
+            "Amount": 3790.67,
+            "Recalc": 0,
+            "ImpSaldoInfo": ""
+          }
+        ]
+      }
+    ]
+  }
+]

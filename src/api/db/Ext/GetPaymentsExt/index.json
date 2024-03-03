@@ -1,0 +1,24 @@
+[
+  {
+    "ExtToken": "9e23a4fb-f66a-4448-a3db-65604e49cf9b",
+    "subscrId": "12345",
+    "PeriodBegin": "202101",
+    "PeriodEnd": "202112"
+  },
+  {
+    "success": true,
+    "result": [
+      {
+        "PaymenId": 260792591,
+        "SubscrId": 4034914,
+        "Date": "20220115",
+        "PostDate": "20220115",
+        "Period": 202201,
+        "PeriodName": "январь 2022",
+        "ServiceGroupName": "Теплоснабжение",
+        "PaymentSource": "Off-line реестр платежей",
+        "Amount": 3938.5
+      }
+    ]
+  }
+]
