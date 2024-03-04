@@ -7,7 +7,7 @@ export class SubscrsRepository extends Config {
     try {
       await this.throttle();
 
-      const response = await this.request(endpoints.subscrsRepository, data);
+      const response = await this.request(endpoints.GetSubscrsExt, data);
 
       const result: TSubscrResponse = response.data;
 

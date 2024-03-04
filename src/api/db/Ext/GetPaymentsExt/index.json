@@ -1,24 +1,137 @@
-[
-  {
-    "ExtToken": "9e23a4fb-f66a-4448-a3db-65604e49cf9b",
-    "subscrId": "12345",
-    "PeriodBegin": "202101",
-    "PeriodEnd": "202112"
-  },
-  {
-    "success": true,
-    "result": [
-      {
-        "PaymenId": 260792591,
-        "SubscrId": 4034914,
-        "Date": "20220115",
-        "PostDate": "20220115",
-        "Period": 202201,
-        "PeriodName": "январь 2022",
-        "ServiceGroupName": "Теплоснабжение",
-        "PaymentSource": "Off-line реестр платежей",
-        "Amount": 3938.5
-      }
-    ]
-  }
-]
+{
+  "success": true,
+  "result": [
+    {
+      "PaymenId": 260792591,
+      "SubscrId": 40013,
+      "Date": "20220115",
+      "PostDate": "20220115",
+      "Period": 202201,
+      "PeriodName": "январь 2022",
+      "ServiceGroupName": "Теплоснабжение",
+      "PaymentSource": "Off-line реестр платежей",
+      "Amount": 3938.5
+    },
+    {
+      "PaymenId": 260792592,
+      "SubscrId": 40021,
+      "Date": "20220120",
+      "PostDate": "20220120",
+      "Period": 202201,
+      "PeriodName": "январь 2022",
+      "ServiceGroupName": "Водоснабжение",
+      "PaymentSource": "Интернет-банк",
+      "Amount": 2500.75
+    },
+    {
+      "PaymenId": 260792593,
+      "SubscrId": 40032,
+      "Date": "20220205",
+      "PostDate": "20220205",
+      "Period": 202202,
+      "PeriodName": "февраль 2022",
+      "ServiceGroupName": "Электроснабжение",
+      "PaymentSource": "Мобильное приложение",
+      "Amount": 1800.0
+    },
+    {
+      "PaymenId": 260792594,
+      "SubscrId": 40045,
+      "Date": "20220210",
+      "PostDate": "20220210",
+      "Period": 202202,
+      "PeriodName": "февраль 2022",
+      "ServiceGroupName": "Газоснабжение",
+      "PaymentSource": "Терминал оплаты",
+      "Amount": 3200.25
+    },
+    {
+      "PaymenId": 260792595,
+      "SubscrId": 40059,
+      "Date": "20220301",
+      "PostDate": "20220301",
+      "Period": 202203,
+      "PeriodName": "март 2022",
+      "ServiceGroupName": "Канализация",
+      "PaymentSource": "Банковский перевод",
+      "Amount": 1500.0
+    },
+    {
+      "PaymenId": 260792596,
+      "SubscrId": 40074,
+      "Date": "20220305",
+      "PostDate": "20220305",
+      "Period": 202203,
+      "PeriodName": "март 2022",
+      "ServiceGroupName": "Уборка территории",
+      "PaymentSource": "Офис оплаты",
+      "Amount": 2000.5
+    },
+    {
+      "PaymenId": 260792597,
+      "SubscrId": 40086,
+      "Date": "20220410",
+      "PostDate": "20220410",
+      "Period": 202204,
+      "PeriodName": "апрель 2022",
+      "ServiceGroupName": "Домофон",
+      "PaymentSource": "Интернет-банк",
+      "Amount": 1200.75
+    },
+    {
+      "PaymenId": 260792598,
+      "SubscrId": 40101,
+      "Date": "20220415",
+      "PostDate": "20220415",
+      "Period": 202204,
+      "PeriodName": "апрель 2022",
+      "ServiceGroupName": "Интернет",
+      "PaymentSource": "Терминал оплаты",
+      "Amount": 1800.0
+    },
+    {
+      "PaymenId": 260792599,
+      "SubscrId": 40115,
+      "Date": "20220501",
+      "PostDate": "20220501",
+      "Period": 202205,
+      "PeriodName": "май 2022",
+      "ServiceGroupName": "Теплоснабжение",
+      "PaymentSource": "Банковский перевод",
+      "Amount": 2500.25
+    },
+    {
+      "PaymenId": 260792600,
+      "SubscrId": 40127,
+      "Date": "20220505",
+      "PostDate": "20220505",
+      "Period": 202205,
+      "PeriodName": "май 2022",
+      "ServiceGroupName": "Водоснабжение",
+      "PaymentSource": "Офис оплаты",
+      "Amount": 3000.0
+    },
+    {
+      "PaymenId": 260792601,
+      "SubscrId": 40138,
+      "Date": "20220610",
+      "PostDate": "20220610",
+      "Period": 202206,
+      "PeriodName": "июнь 2022",
+      "ServiceGroupName": "Электроснабжение",
+      "PaymentSource": "Мобильное приложение",
+      "Amount": 2200.5
+    },
+    {
+      "PaymenId": 260792602,
+      "SubscrId": 40145,
+      "Date": "20220615",
+      "PostDate": "20220615",
+      "Period": 202206,
+      "PeriodName": "июнь 2022",
+      "ServiceGroupName": "Газоснабжение",
+      "PaymentSource": "Терминал оплаты",
+      "Amount": 3500.25
+    }
+  ]
+}

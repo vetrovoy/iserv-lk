@@ -2,11 +2,13 @@
 export type TUser = {
   Username: string;
   Password: string;
+  ExtToken?: string;
 };
 
 export type TUserLogOnResponse = {
   success: boolean;
-  msg: string;
+  extToken?: string;
+  msg?: string;
 };
 
 export type TUserLogOnRequest = TUser;

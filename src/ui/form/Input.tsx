@@ -23,7 +23,7 @@ const InputComponent = styled.input<{ status: TFieldStatus }>`
   outline: none;
 `;
 
-interface IInput extends InputHTMLAttributes<HTMLInputElement> {
+export interface IInput extends InputHTMLAttributes<HTMLInputElement> {
   rules?: (value: string) => boolean;
   onValueChange?: ({ name, value }: IFieldResult) => void;
 }

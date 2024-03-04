@@ -1,15 +1,20 @@
 import { FC, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import styled from "styled-components";
 
-import { Button } from "../ui/button/Button";
-import { Form } from "../ui/form/Form";
-import { Input } from "../ui/form/Input";
-import { Paragraph } from "../ui/typography/Paragraph";
-import { Title } from "../ui/typography/Title";
-import API from "../api/api";
-import { validation } from "../helpers/validation";
-import { TFieldStatus, IFieldResult } from "../ui/form/types/types";
+import { Button } from "../../ui/button/Button";
+import { Form } from "../../ui/form/Form";
+import { Input } from "../../ui/form/Input";
+import { Paragraph } from "../../ui/typography/Paragraph";
+import { Title } from "../../ui/typography/Title";
+import API from "../../api/api";
+import { validation } from "../../helpers/validation";
+import { TFieldStatus, IFieldResult } from "../../ui/form/types/types";
+import { userActions } from "../../store/user/user";
+import { InputPassword } from "../../components/form/inputPassword";
+import { useTypedDispatch } from "../../hooks/useTypedSelector";
+import { routeNames } from "../../routes/routes";
 
 const AuthFormWrapper = styled.div`
   display: flex;
@@ -31,6 +36,9 @@ type TAuthForm = {
 const api = new API();
 
 export const AuthForm: FC = () => {
+  const navigate = useNavigate();
+  const dispatch = useTypedDispatch();
+
   const [msg, setMsg] = useState<string>("");
   const [status, setStatus] = useState<TFieldStatus>("idle");
 
@@ -78,9 +86,13 @@ export const AuthForm: FC = () => {
 
     if (auth.success) {
       setStatus("success");
+      dispatch(userActions.setUser(form.email));
+      dispatch(userActions.setToken(auth?.extToken));
+
+      navigate(routeNames.HOME);
     } else {
       setStatus("error");
-      setMsg(auth.msg);
+      setMsg(auth?.msg || "");
     }
   };
 
@@ -99,12 +111,10 @@ export const AuthForm: FC = () => {
             type="email"
           />
           <Paragraph>Пароль</Paragraph>
-          <Input
+          <InputPassword
             rules={validation.length}
             onValueChange={onAuthInputChange}
             style={{ marginBottom: 20, width: "100%" }}
-            name="password"
-            type="password"
           />
           <Button type="submit">Войти</Button>
         </Form>

@@ -10,6 +10,10 @@ const ButtonComponent = styled.button`
   text-align: center;
   color: #fff;
   cursor: pointer;
+
+  &:hover {
+    background: linear-gradient(269deg, #3b85e0 0%, #14b590 100%);
+  }
 `;
 
 export const Button: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
