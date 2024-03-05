@@ -6,9 +6,12 @@ export class SubscrsRepository extends Config {
     try {
       await this.throttle();
 
-      const response = await this.request("GetSubscrsExt", data);
+      const response = await this.request<TSubscrResponse>(
+        "GetSubscrsExt",
+        data,
+      );
 
-      const result: TSubscrResponse = response.data;
+      const result = response.data;
 
       return result;
     } catch (error) {

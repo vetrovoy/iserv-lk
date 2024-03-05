@@ -11,16 +11,15 @@ import { Title } from "../../ui/typography/Title";
 import API from "../../api/api";
 import { validation } from "../../helpers/validation";
 import { TFieldStatus, IFieldResult } from "../../ui/form/types/types";
-import { userActions } from "../../store/user/user";
+
 import { InputPassword } from "../../components/form/inputPassword";
-import { useTypedDispatch } from "../../hooks/useTypedSelector";
 import { routeNames } from "../../routes/routes";
 
 const AuthFormWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: calc(100vh - 84.5px);
 `;
 
 const AuthFormComponent = styled.div`
@@ -29,70 +28,97 @@ const AuthFormComponent = styled.div`
 `;
 
 type TAuthForm = {
-  email: string;
-  password: string;
+  email: {
+    value: string | undefined;
+    valid: boolean | undefined;
+  };
+  password: {
+    value: string | undefined;
+    valid: boolean | undefined;
+  };
 };
 
 const api = new API();
 
 export const AuthForm: FC = () => {
   const navigate = useNavigate();
-  const dispatch = useTypedDispatch();
 
   const [msg, setMsg] = useState<string>("");
   const [status, setStatus] = useState<TFieldStatus>("idle");
 
   const [form, setForm] = useState<TAuthForm>({
-    email: "",
-    password: "",
+    email: {
+      value: "",
+      valid: false,
+    },
+    password: {
+      value: "",
+      valid: false,
+    },
   });
 
-  const onAuthInputChange = (result: IFieldResult) => {
-    setStatus("idle");
+  const isCanSendForm = !form.email.valid || !form.password.valid;
 
-    setForm((prev) => {
-      if (result.name === "email") {
-        prev.email = result.value || "";
-      }
+  const onEmailChange = (result: IFieldResult) => {
+    setForm((prev) => ({
+      ...prev,
+      email: {
+        value: result.value,
+        valid: result.valid,
+      },
+    }));
+  };
 
-      if (result.name === "password") {
-        prev.password = result.value || "";
-      }
-
-      return prev;
-    });
+  const onPasswordChange = (result: IFieldResult) => {
+    setForm((prev) => ({
+      ...prev,
+      password: {
+        value: result.value,
+        valid: result.valid,
+      },
+    }));
   };
 
   const onAuthFormSubmit = async () => {
     setStatus("loading");
     setMsg("");
 
-    if (!form.email) {
+    if (!form.email.value) {
       setStatus("error");
       setMsg("Пожалуйста укажите почту");
       return;
     }
 
-    if (!form.password) {
+    if (!form.password.value) {
       setStatus("error");
       setMsg("Пожалуйста укажите пароль");
       return;
     }
 
-    const auth = await api.logOn({
-      Username: form.email,
-      Password: form.password,
-    });
+    sendAuthForm();
+  };
 
-    if (auth.success) {
-      setStatus("success");
-      dispatch(userActions.setUser(form.email));
-      dispatch(userActions.setToken(auth?.extToken));
+  const sendAuthForm = async () => {
+    try {
+      if (!form.email.value || !form.password.value) return;
 
-      navigate(routeNames.HOME);
-    } else {
-      setStatus("error");
-      setMsg(auth?.msg || "");
+      const auth = await api.logOn({
+        Username: form.email.value,
+        Password: form.password.value,
+      });
+
+      if (auth.success && auth.extToken) {
+        setStatus("success");
+
+        localStorage.setItem("token", auth.extToken);
+
+        navigate(routeNames.SUBSCRS);
+      } else {
+        setStatus("error");
+        setMsg(auth?.msg || "");
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -104,7 +130,7 @@ export const AuthForm: FC = () => {
           <Paragraph>Почта</Paragraph>
           <Input
             rules={validation.email}
-            onValueChange={onAuthInputChange}
+            onValueChange={onEmailChange}
             style={{ marginBottom: 20, width: "100%" }}
             placeholder="email@mail.ru"
             name="email"
@@ -113,10 +139,12 @@ export const AuthForm: FC = () => {
           <Paragraph>Пароль</Paragraph>
           <InputPassword
             rules={validation.length}
-            onValueChange={onAuthInputChange}
+            onValueChange={onPasswordChange}
             style={{ marginBottom: 20, width: "100%" }}
           />
-          <Button type="submit">Войти</Button>
+          <Button disabled={isCanSendForm} type="submit">
+            Войти
+          </Button>
         </Form>
       </AuthFormComponent>
     </AuthFormWrapper>

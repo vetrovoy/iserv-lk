@@ -1,7 +1,6 @@
 import { Navigate } from "react-router-dom";
 
 import { Auth } from "../pages/Auth";
-import { Home } from "../pages/Home";
 import { Payments } from "../pages/Payments";
 import { Charges } from "../pages/Charges";
 import { Subscrs } from "../pages/Subscrs";
@@ -10,8 +9,7 @@ import { Error } from "../pages/Error";
 export enum routeNames {
   ERROR = "/404",
   AUTH = "/",
-  HOME = "/home",
-  PAYMENTS = "/payments",
+  PAYMENTS = "/payments/",
   CHARGES = "/charges",
   SUBSCRS = "/subscrs",
 }
@@ -32,15 +30,11 @@ export const routes: IRoute[] = [
     element: <Error />,
   },
   {
-    path: routeNames.HOME,
-    element: <Home />,
-  },
-  {
     path: routeNames.CHARGES,
     element: <Charges />,
   },
   {
-    path: routeNames.PAYMENTS,
+    path: routeNames.PAYMENTS + ":slug",
     element: <Payments />,
   },
   {

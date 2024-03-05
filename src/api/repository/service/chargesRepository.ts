@@ -6,9 +6,12 @@ export class ChargesRepository extends Config {
     try {
       await this.throttle();
 
-      const response = await this.request("GetChargesExt", data);
+      const response = await this.request<TChargeResponse>(
+        "GetChargesExt",
+        data,
+      );
 
-      const result: TChargeResponse = response.data;
+      const result = response.data;
 
       return result;
     } catch (error) {

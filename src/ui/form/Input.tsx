@@ -42,7 +42,7 @@ export const Input: FC<IInput> = ({
     const status = validateInput(rules, value);
     setStatus(status);
 
-    onValueChange({ name: name, value: value });
+    onValueChange({ name: name, value: value, valid: status === "success" });
   };
 
   return (

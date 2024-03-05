@@ -35,6 +35,7 @@ export const SubscrList: FC<TSubscrRequest> = (ExtToken: TSubscrRequest) => {
   return (
     <FlexContainer>
       {subscrs &&
+        subscrs.length > 0 &&
         subscrs.map((item) => <SubscrsCard key={item.SubscrId} {...item} />)}
     </FlexContainer>
   );

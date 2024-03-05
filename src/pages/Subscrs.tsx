@@ -1,14 +1,25 @@
-import { useTypedSelector } from "../hooks/useTypedSelector";
+import styled from "styled-components";
+
 import { SubscrList } from "../modules/subscr/SubscrList";
+import { Button } from "../ui/button/Button";
 import { Title } from "../ui/typography/Title";
 
+const Heading = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-bottom: 20px;
+`;
+
 export const Subscrs = () => {
-  const token = useTypedSelector((state) => state.user.token);
-  console.log(token);
+  const token = localStorage.getItem("token");
+
   return (
     <>
-      <Title style={{ marginBottom: 20 }}>Список Л/С</Title>
-
+      <Heading>
+        <Title>Список Л/С</Title>
+        <Button>Добавить лицевой счет</Button>
+      </Heading>
       {token && <SubscrList ExtToken={token} />}
     </>
   );

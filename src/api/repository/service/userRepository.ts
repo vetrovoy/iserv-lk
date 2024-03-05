@@ -6,9 +6,9 @@ export class UserRepository extends Config {
     try {
       await this.throttle();
 
-      const response = await this.request("LogOnExt", data);
+      const response = await this.request<TUserLogOnResponse>("LogOnExt", data);
 
-      const result: TUserLogOnResponse = response.data;
+      const result = response.data;
 
       return result;
     } catch (error) {

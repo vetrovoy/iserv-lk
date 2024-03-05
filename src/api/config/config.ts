@@ -29,10 +29,10 @@ export class Config implements IConfig {
     });
   }
 
-  public async request(
+  public async request<T>(
     endpoint: TEndpoint,
     data: object,
-  ): Promise<AxiosResponse> {
+  ): Promise<AxiosResponse<T>> {
     try {
       const apiEndpoint = this.API_ROOT + endpoint;
       const response = await this.instance.post(apiEndpoint, data);

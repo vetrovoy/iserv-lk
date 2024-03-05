@@ -8,7 +8,6 @@ type TMain = {
 
 const Wrapper = styled.main`
   background: #fff;
-  margin: 75px 0;
 `;
 
 export const Main = ({ children }: TMain) => {

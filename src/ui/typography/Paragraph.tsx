@@ -10,6 +10,7 @@ const sizes = {
 const colors = {
   black: "#1a1f25",
   grey: "#6f7882",
+  blue: "#479AFF",
 };
 
 type TParagraph = {

@@ -1,8 +1,11 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import { TSubscr } from "../../api/types";
 import { Paragraph } from "../../ui/typography/Paragraph";
+import { Button } from "../../ui/button/Button";
+import { routeNames } from "../../routes/routes";
 
 const SubscrsCardComponent = styled.div`
   position: relative;
@@ -27,16 +30,15 @@ const SubscrsCardComponent = styled.div`
 
 const FlexContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   gap: 10px;
 `;
 
 const SubscrsCardContent = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 10px;
-  max-width: 250px;
   width: 100%;
 `;
 
@@ -55,13 +57,17 @@ export const SubscrsCard: FC<TSubscr> = ({
 
       <FlexContainer>
         <SubscrsCardContent>
-          <Paragraph color="black">{Address} </Paragraph>
+          <Paragraph>{Address} </Paragraph>
           <Paragraph color="black">{FIO}</Paragraph>
         </SubscrsCardContent>
 
         <SubscrsCardContent>
-          <Paragraph>{OrgId}</Paragraph>
-          <Paragraph>Номер: {SubscrCode} </Paragraph>
+          <Link to={`${routeNames.PAYMENTS}${SubscrId}`}>
+            <Button>История оплаты</Button>
+          </Link>
+          <Link to={`${routeNames.CHARGES}${SubscrId}`}>
+            <Button>Начисления</Button>
+          </Link>
         </SubscrsCardContent>
       </FlexContainer>
     </SubscrsCardComponent>
