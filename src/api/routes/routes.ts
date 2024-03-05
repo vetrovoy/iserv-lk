@@ -3,50 +3,42 @@ import GetChargesExtData from "../db/Ext/GetChargesExt/index.json";
 import GetPaymentsExtData from "../db/Ext/GetPaymentsExt/index.json";
 import GetSubscrsExtData from "../db/Ext/GetSubscrsExt/index.json";
 
-export type TEndpoint =
-  | "/Ext/LogOnExt"
-  | "/Ext/GetChargesExt"
-  | "/Ext/GetPaymentsExt"
-  | "/Ext/GetSubscrsExt";
-
-export type TEndpoints = {
-  [key: string]: TEndpoint;
+type IEndpoints = {
+  LogOnExt: string;
+  GetChargesExt: string;
+  GetPaymentsExt: string;
+  GetSubscrsExt: string;
 };
 
-const endpoints: TEndpoints = {
-  LogOnExt: "/Ext/LogOnExt",
-  GetChargesExt: "/Ext/GetChargesExt",
-  GetPaymentsExt: "/Ext/GetPaymentsExt",
-  GetSubscrsExt: "/Ext/GetSubscrsExt",
-};
+export type TEndpoint = keyof IEndpoints;
 
-export type Route = {
+export type TRoute = {
   matcher: TEndpoint;
   data: object;
   status: number;
 };
 
-const routes: Route[] = [
+const routes: TRoute[] = [
   {
-    matcher: endpoints["LogOnExt"],
+    matcher: "LogOnExt",
     data: LogOnExtData,
     status: 200,
   },
   {
-    matcher: endpoints["GetChargesExt"],
+    matcher: "GetChargesExt",
     data: GetChargesExtData,
     status: 200,
   },
   {
-    matcher: endpoints["GetPaymentsExt"],
+    matcher: "GetPaymentsExt",
     data: GetPaymentsExtData,
     status: 200,
   },
   {
-    matcher: endpoints["GetSubscrsExt"],
+    matcher: "GetSubscrsExt",
     data: GetSubscrsExtData,
     status: 200,
   },
 ];
 
-export { routes, endpoints };
+export { routes };

@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
 import MockAdapter from "axios-mock-adapter";
 
-import { routes, Route, TEndpoint } from "../routes/routes";
+import { routes, TRoute, TEndpoint } from "../routes/routes";
 
 type IConfig = {
   request: (endpoint: TEndpoint, data: object) => Promise<AxiosResponse>;
@@ -10,6 +10,7 @@ type IConfig = {
 };
 
 export class Config implements IConfig {
+  private readonly API_ROOT = process.env.API_ROOT || "http://localhost:3000";
   private instance: AxiosInstance;
   private mock: MockAdapter;
 
@@ -22,9 +23,9 @@ export class Config implements IConfig {
 
   private init() {
     // Init mock endpoints
-    routes.forEach((route: Route) => {
-      const endpoint = route.matcher;
-      this.mock.onPost(endpoint).reply(route.status, route.data);
+    routes.forEach((route: TRoute) => {
+      const apiEndpoint = this.API_ROOT + route.matcher;
+      this.mock.onPost(apiEndpoint).reply(route.status, route.data);
     });
   }
 
@@ -33,7 +34,8 @@ export class Config implements IConfig {
     data: object,
   ): Promise<AxiosResponse> {
     try {
-      const response = await this.instance.post(endpoint, data);
+      const apiEndpoint = this.API_ROOT + endpoint;
+      const response = await this.instance.post(apiEndpoint, data);
       return response;
     } catch (error) {
       if (axios.isAxiosError(error)) {
