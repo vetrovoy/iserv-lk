@@ -5,7 +5,7 @@ import {
   useTypedSelector,
 } from "../../hooks/useTypedSelector";
 
-import { periodActions } from "../../store/user/period";
+import { periodActions } from "../../store/period/period";
 import InputDateRange from "../form/inputDateRange";
 import { formatters } from "../../helpers/formatters";
 

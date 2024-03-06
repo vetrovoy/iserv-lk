@@ -22,6 +22,21 @@ const FormComponent = styled.form<{ status: TFieldStatus }>`
   filter: ${(props) => (props.status === "loading" ? "blur(2px)" : "none")};
 `;
 
+const FormParagraph = styled.div`
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  zindex: 100;
+`;
+
+const FormSpinner = styled.div`
+  position: absolute;
+  zindex: 100;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+`;
+
 const FormWrapper = styled.div`
   position: relative;
 `;
@@ -48,27 +63,13 @@ export const Form: FC<IForm> = ({
       <FormComponent status={status} onSubmit={onSubmit} {...props}>
         {children}
       </FormComponent>
-      <Paragraph
-        style={{
-          position: "absolute",
-          right: 30,
-          top: 30,
-          color: STATUS_STYLES[status],
-          zIndex: 100,
-        }}
-      >
-        {msg}
-      </Paragraph>
+      <FormParagraph>
+        <Paragraph>{msg}</Paragraph>
+      </FormParagraph>
       {status === "loading" && (
-        <Spinner
-          style={{
-            position: "absolute",
-            zIndex: 100,
-            top: "50%",
-            right: "50%",
-            transform: "translate(50%, -50%)",
-          }}
-        />
+        <FormSpinner>
+          <Spinner />
+        </FormSpinner>
       )}
     </FormWrapper>
   );

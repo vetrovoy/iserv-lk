@@ -6,7 +6,6 @@ import styled from "styled-components";
 import { Button } from "../../ui/button/Button";
 import { Form } from "../../ui/form/Form";
 import { Input } from "../../ui/form/Input";
-import { Paragraph } from "../../ui/typography/Paragraph";
 import { Title } from "../../ui/typography/Title";
 import API from "../../api/api";
 import { validation } from "../../helpers/validation";
@@ -80,6 +79,11 @@ export const AuthForm: FC = () => {
   };
 
   const onAuthFormSubmit = async () => {
+    validateAuthForm();
+    sendAuthForm();
+  };
+
+  const validateAuthForm = () => {
     setStatus("loading");
     setMsg("");
 
@@ -94,8 +98,6 @@ export const AuthForm: FC = () => {
       setMsg("Пожалуйста укажите пароль");
       return;
     }
-
-    sendAuthForm();
   };
 
   const sendAuthForm = async () => {
@@ -111,7 +113,6 @@ export const AuthForm: FC = () => {
         setStatus("success");
 
         localStorage.setItem("token", auth.extToken);
-
         navigate(routeNames.SUBSCRS);
       } else {
         setStatus("error");
@@ -119,6 +120,8 @@ export const AuthForm: FC = () => {
       }
     } catch (error) {
       console.log(error);
+      setStatus("error");
+      setMsg("Непредвиденная ошибка");
     }
   };
 
@@ -126,21 +129,23 @@ export const AuthForm: FC = () => {
     <AuthFormWrapper>
       <AuthFormComponent>
         <Form msg={msg} status={status} onFormSubmit={onAuthFormSubmit}>
-          <Title style={{ marginBottom: 20 }}>Вход</Title>
-          <Paragraph>Почта</Paragraph>
+          <Title marginBottom="20px">Вход</Title>
           <Input
+            label="Почта"
             rules={validation.email}
             onValueChange={onEmailChange}
-            style={{ marginBottom: 20, width: "100%" }}
             placeholder="email@mail.ru"
             name="email"
             type="email"
+            marginBottom="20px"
+            width="100%"
           />
-          <Paragraph>Пароль</Paragraph>
           <InputPassword
+            label="Пароль"
             rules={validation.length}
             onValueChange={onPasswordChange}
-            style={{ marginBottom: 20, width: "100%" }}
+            width="100%"
+            marginBottom="20px"
           />
           <Button disabled={isCanSendForm} type="submit">
             Войти

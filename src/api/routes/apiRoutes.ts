@@ -18,7 +18,7 @@ export type TRoute = {
   status: number;
 };
 
-const routes: TRoute[] = [
+const apiRoutes: TRoute[] = [
   {
     matcher: "LogOnExt",
     data: LogOnExtData,
@@ -41,4 +41,4 @@ const routes: TRoute[] = [
   },
 ];
 
-export { routes };
+export { apiRoutes };

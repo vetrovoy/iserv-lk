@@ -1,4 +1,4 @@
-import { CSSProperties, FC, ReactNode } from "react";
+import { FC, ReactNode } from "react";
 import styled from "styled-components";
 
 const sizes = {
@@ -15,7 +15,6 @@ const colors = {
 
 type TParagraph = {
   children: ReactNode;
-  style?: CSSProperties;
   size?: keyof typeof sizes;
   color?: keyof typeof colors;
 };
@@ -32,12 +31,11 @@ const ParagraphComponent = styled.p<{
 
 export const Paragraph: FC<TParagraph> = ({
   children,
-  style = {},
   size,
   color,
 }: TParagraph) => {
   return (
-    <ParagraphComponent color={color} size={size} style={style}>
+    <ParagraphComponent color={color} size={size}>
       {children}
     </ParagraphComponent>
   );

@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 
-import { PaymentsList } from "../components/payments/PaymentsList";
+import { PaymentsList } from "../modules/payments/PaymentsList";
 import { ProtectedRoute } from "../routes/ProtectedRoute";
 import { PageHeading } from "../components/heading/PageHeading";
 import { Title } from "../ui/typography/Title";

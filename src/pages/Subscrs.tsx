@@ -8,7 +8,7 @@ export const Subscrs = () => {
   const token = localStorage.getItem("token");
 
   return (
-    <ProtectedRoute>
+    <ProtectedRoute token={token}>
       <PageHeading>
         <Title>Список Л/С</Title>
         <Button>Добавить лицевой счет</Button>

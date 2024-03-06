@@ -1,10 +1,10 @@
-import { CSSProperties, FC } from "react";
+import { FC } from "react";
 
 import styled from "styled-components";
 
-type TSpinner = {
-  style?: CSSProperties;
-};
+const StyledSpinnerWrapper = styled.div`
+  text-align: center;
+`;
 
 const StyledSpinner = styled.svg`
   animation: rotate 2s linear infinite;
@@ -39,11 +39,9 @@ const StyledSpinner = styled.svg`
   }
 `;
 
-export const Spinner: FC<TSpinner> = ({
-  style = { textAlign: "center" },
-}: TSpinner) => {
+export const Spinner: FC = () => {
   return (
-    <div style={style}>
+    <StyledSpinnerWrapper>
       <StyledSpinner viewBox="0 0 50 50">
         <circle
           className="path"
@@ -54,6 +52,6 @@ export const Spinner: FC<TSpinner> = ({
           strokeWidth="4"
         />
       </StyledSpinner>
-    </div>
+    </StyledSpinnerWrapper>
   );
 };

@@ -8,8 +8,8 @@ import { Paragraph } from "../../ui/typography/Paragraph";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { TCharge } from "../../api/types";
 
-import { ChargesDateRange } from "./ChargesDateRange";
-import { ChargesTable } from "./ChargesTable";
+import { ChargesDateRange } from "../../components/charges/ChargesDateRange";
+import { ChargesTable } from "../../components/charges/ChargesTable";
 
 type TChargesList = {
   ExtToken: string;

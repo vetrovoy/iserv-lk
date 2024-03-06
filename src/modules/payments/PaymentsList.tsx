@@ -8,8 +8,8 @@ import { TPayment } from "../../api/types";
 import { Spinner } from "../../ui/loaders/Spinner";
 import { Paragraph } from "../../ui/typography/Paragraph";
 
-import { PaymentsDateRange } from "./PaymentsDateRange";
-import { PaymentsTable } from "./PaymentsTable";
+import { PaymentsDateRange } from "../../components/payments/PaymentsDateRange";
+import { PaymentsTable } from "../../components/payments/PaymentsTable";
 
 type TPaymentsList = {
   id: string;

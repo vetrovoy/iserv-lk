@@ -1,4 +1,4 @@
-import { periodReducer } from "./user/period";
+import { periodReducer } from "./period/period";
 
 const reducers = {
   period: periodReducer,
