@@ -3,7 +3,7 @@ import { CSSProperties, FC } from "react";
 import styled from "styled-components";
 
 type TSpinner = {
-  style: CSSProperties;
+  style?: CSSProperties;
 };
 
 const StyledSpinner = styled.svg`
@@ -39,7 +39,9 @@ const StyledSpinner = styled.svg`
   }
 `;
 
-export const Spinner: FC<TSpinner> = ({ style = {} }: TSpinner) => {
+export const Spinner: FC<TSpinner> = ({
+  style = { textAlign: "center" },
+}: TSpinner) => {
   return (
     <div style={style}>
       <StyledSpinner viewBox="0 0 50 50">

@@ -1,7 +1,7 @@
-import { paymentsPeriodReducer } from "./user/payments-period";
+import { periodReducer } from "./user/period";
 
 const reducers = {
-  paymentsPeriod: paymentsPeriodReducer,
+  period: periodReducer,
 };
 
 export default reducers;

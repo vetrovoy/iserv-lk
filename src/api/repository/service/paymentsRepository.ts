@@ -4,7 +4,7 @@ import { TPaymentRequest, TPaymentResponse } from "../../types";
 export class PaymentsRepository extends Config {
   public async getPayments({
     ExtToken,
-    subscrId,
+    SubscrId,
     PeriodBegin,
     PeriodEnd,
   }: TPaymentRequest): Promise<TPaymentResponse> {
@@ -13,20 +13,21 @@ export class PaymentsRepository extends Config {
 
       const response = await this.request<TPaymentResponse>("GetPaymentsExt", {
         ExtToken,
-        subscrId,
+        SubscrId,
         PeriodBegin,
         PeriodEnd,
       });
 
-      const filtered = response.data.result.filter(
-        (item) =>
-          parseInt(item.Date) >= PeriodBegin &&
-          parseInt(item.Date) <= PeriodEnd,
+      const filtered = response.data.results.filter(
+        (payment) =>
+          payment.Period >= parseInt(PeriodBegin) &&
+          payment.Period <= parseInt(PeriodEnd) &&
+          payment.SubscrId === SubscrId,
       );
 
       const result = {
         success: response.data.success,
-        result: filtered,
+        results: filtered,
       };
 
       return result;

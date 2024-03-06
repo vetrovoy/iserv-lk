@@ -30,7 +30,6 @@ export const InputPassword: FC<IInputPassword> = ({
   return (
     <InputPasswordComponent style={style}>
       <Input
-        style={{ width: "inherit", height: "inherit" }}
         name="password"
         type={isShowPassword ? "text" : "password"}
         {...props}

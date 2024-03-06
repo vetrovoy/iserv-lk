@@ -10,13 +10,11 @@ export const helpers = {
       const year = today.getFullYear();
 
       if (month < 0) {
-        const iso = formatters.formatDateToISO(
-          new Date(year - 1, 12 + month, 1),
-        );
+        const iso = formatters.dateToPeriod(new Date(year - 1, 12 + month, 1));
 
         lastSixMonths.push(iso);
       } else {
-        const iso = formatters.formatDateToISO(new Date(year, month, 1));
+        const iso = formatters.dateToPeriod(new Date(year, month, 1));
 
         lastSixMonths.push(iso);
       }

@@ -3,9 +3,9 @@
   "results": [
     {
       "ChargeId": 512705009,
-      "SubscrId": 4034914,
-      "Period": 202105,
-      "PeriodName": "май 2021",
+      "SubscrId": "141561448",
+      "Period": 202305,
+      "PeriodName": "май 2023",
       "DebtByBeginMonth": 3790.67,
       "Amount": 3790.67,
       "Payment": 3790.67,
@@ -20,6 +20,78 @@
           "UnitName": "ГКал",
           "Total": 3790.67,
           "Amount": 3790.67,
+          "Recalc": 0,
+          "ImpSaldoInfo": ""
+        }
+      ]
+    },
+    {
+      "ChargeId": 612805011,
+      "SubscrId": "141561448",
+      "Period": 202403,
+      "PeriodName": "март 2024",
+      "DebtByBeginMonth": 4200.45,
+      "Amount": 4200.45,
+      "Payment": 4200.45,
+      "AmountToPay": 4200.45,
+      "ChargeDetails": [
+        {
+          "ChargeDetailId": 4787093418,
+          "GroupName": "Электроснабжение",
+          "Name": "Электроэнергия",
+          "Quantity": 300.5,
+          "Tariff": 14.0,
+          "UnitName": "кВт",
+          "Total": 4200.45,
+          "Amount": 4200.45,
+          "Recalc": 0,
+          "ImpSaldoInfo": ""
+        }
+      ]
+    },
+    {
+      "ChargeId": 912105041,
+      "SubscrId": "141561448956-2190-4",
+      "Period": 202403,
+      "PeriodName": "март 2024",
+      "DebtByBeginMonth": 3400.23,
+      "Amount": 3400.23,
+      "Payment": 3400.23,
+      "AmountToPay": 3400.23,
+      "ChargeDetails": [
+        {
+          "ChargeDetailId": 7887093430,
+          "GroupName": "Водоснабжение",
+          "Name": "Горячая вода",
+          "Quantity": 40.5,
+          "Tariff": 80.0,
+          "UnitName": "м³",
+          "Total": 3400.23,
+          "Amount": 3400.23,
+          "Recalc": 0,
+          "ImpSaldoInfo": ""
+        }
+      ]
+    },
+    {
+      "ChargeId": 1012005041,
+      "SubscrId": "141561448956-2190-4",
+      "Period": 202403,
+      "PeriodName": "март 2024",
+      "DebtByBeginMonth": 4100.67,
+      "Amount": 4100.67,
+      "Payment": 4100.67,
+      "AmountToPay": 4100.67,
+      "ChargeDetails": [
+        {
+          "ChargeDetailId": 8887093434,
+          "GroupName": "Отопление",
+          "Name": "Центральное отопление",
+          "Quantity": 2.1,
+          "Tariff": 1950.0,
+          "UnitName": "ГКал",
+          "Total": 4100.67,
+          "Amount": 4100.67,
           "Recalc": 0,
           "ImpSaldoInfo": ""
         }

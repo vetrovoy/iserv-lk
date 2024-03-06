@@ -17,32 +17,42 @@ export enum routeNames {
 export interface IRoute {
   path: string;
   element: React.ReactNode;
-  exact?: boolean;
+  isProtected?: boolean;
 }
+
+export const protectedRoutes: IRoute[] = [
+  {
+    path: routeNames.CHARGES,
+    element: <Charges />,
+    isProtected: true,
+  },
+  {
+    path: routeNames.PAYMENTS + ":slug",
+    element: <Payments />,
+    isProtected: true,
+  },
+  {
+    path: routeNames.SUBSCRS,
+    element: <Subscrs />,
+    isProtected: true,
+  },
+];
 
 export const routes: IRoute[] = [
   {
     path: "*",
     element: <Navigate to={routeNames.ERROR} />,
+    isProtected: false,
   },
   {
     path: routeNames.ERROR,
     element: <Error />,
-  },
-  {
-    path: routeNames.CHARGES,
-    element: <Charges />,
-  },
-  {
-    path: routeNames.PAYMENTS + ":slug",
-    element: <Payments />,
-  },
-  {
-    path: routeNames.SUBSCRS,
-    element: <Subscrs />,
+    isProtected: false,
   },
   {
     path: routeNames.AUTH,
     element: <Auth />,
+    isProtected: false,
   },
+  ...protectedRoutes,
 ];

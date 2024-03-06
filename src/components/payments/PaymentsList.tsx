@@ -1,47 +1,22 @@
 import { FC, useEffect, useState } from "react";
 
-import styled from "styled-components";
-
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 
 import API from "../../api/api";
 import { TPayment } from "../../api/types";
-import { formatters } from "../../helpers/formatters";
 
-import { StyledDateInputs } from "./PaymentsDateRange";
+import { Spinner } from "../../ui/loaders/Spinner";
+import { Paragraph } from "../../ui/typography/Paragraph";
+
+import { PaymentsDateRange } from "./PaymentsDateRange";
+import { PaymentsTable } from "./PaymentsTable";
 
 type TPaymentsList = {
-  id: number;
+  id: string;
   ExtToken: string;
 };
 
-const TableContainer = styled.div`
-  width: 100%;
-  margin: 20px;
-`;
-
-const Table = styled.table`
-  width: 100%;
-  border-collapse: collapse;
-`;
-
-const Th = styled.th`
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
-`;
-
-const Td = styled.td`
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
-`;
-
-const TableRow = styled.tr`
-  &:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-`;
+type TPaymentsListStatus = "success" | "error" | "loading";
 
 const api = new API();
 
@@ -49,69 +24,61 @@ export const PaymentsList: FC<TPaymentsList> = ({
   ExtToken,
   id,
 }: TPaymentsList) => {
-  const period = useTypedSelector((state) => state.paymentsPeriod.period);
+  const period = useTypedSelector((state) => state.period.paymentsPeriod);
 
+  const [msg, setMsg] = useState<string>("");
+  const [status, setStatus] = useState<TPaymentsListStatus>("loading");
   const [payments, setPayments] = useState<TPayment[]>([]);
 
   useEffect(() => {
     async function getPayments() {
-      if (!id) return;
+      if (!id) {
+        setMsg("Лицевой счет не найден");
+        setStatus("error");
+      }
+
+      setStatus("loading");
 
       try {
-        const PeriodBegin = formatters.ISOToNumber(period.begin);
-        const PeriodEnd = formatters.ISOToNumber(period.end);
-
         const payments = await api.getPayments({
           ExtToken: ExtToken,
-          subscrId: id,
-          PeriodBegin: PeriodBegin,
-          PeriodEnd: PeriodEnd,
+          SubscrId: id,
+          PeriodBegin: period.begin,
+          PeriodEnd: period.end,
         });
 
-        if (payments.success && payments.result) {
-          setPayments(payments.result);
+        if (payments.success && payments.results) {
+          if (payments.results.length === 0) {
+            setMsg("Отсутствуют данные за данный период");
+            setStatus("error");
+            return;
+          }
+
+          setPayments(payments.results);
+          setStatus("success");
+        } else {
+          setMsg(payments.msg || "Непредвиденная ошибка");
+          setStatus("error");
         }
       } catch (error) {
         console.log(error);
+        setStatus("error");
+        setMsg("Непредвиденная ошибка");
       }
     }
     getPayments();
   }, [id, period.begin, period.end, ExtToken]);
 
-  console.log(period);
-
   return (
     <>
-      <StyledDateInputs />
-      <TableContainer>
-        <Table>
-          <thead>
-            <TableRow>
-              <Th>Дата платежа</Th>
-              <Th>Период платежа</Th>
-              <Th>Источник платежа</Th>
-              <Th>Сумма платежа</Th>
-            </TableRow>
-          </thead>
-          <tbody>
-            {payments &&
-              payments.map((data) => {
-                return (
-                  <TableRow key={data.SubscrId}>
-                    <Td>
-                      {formatters
-                        .stringToDate(data.Date)
-                        .toLocaleDateString("ru")}
-                    </Td>
-                    <Td>{data.PeriodName}</Td>
-                    <Td>{data.PaymentSource}</Td>
-                    <Td>{data.Amount}</Td>
-                  </TableRow>
-                );
-              })}
-          </tbody>
-        </Table>
-      </TableContainer>
+      <PaymentsDateRange />
+      {status === "loading" && <Spinner />}
+      {status === "success" && (
+        <>
+          <PaymentsTable data={payments} />
+        </>
+      )}
+      {status === "error" && <Paragraph>{msg}</Paragraph>}
     </>
   );
 };

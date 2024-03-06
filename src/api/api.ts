@@ -37,13 +37,13 @@ export default class API extends Config {
 
   public getPayments({
     ExtToken,
-    subscrId,
+    SubscrId,
     PeriodBegin,
     PeriodEnd,
   }: TPaymentRequest) {
     return this.paymentsRepository.getPayments({
       ExtToken,
-      subscrId,
+      SubscrId,
       PeriodBegin,
       PeriodEnd,
     });

@@ -15,7 +15,7 @@ export type TUserLogOnRequest = TUser;
 
 // Subscr
 export type TSubscr = {
-  SubscrId: number;
+  SubscrId: string;
   OrgId: number;
   SubscrCode: number;
   FIO: string;
@@ -25,6 +25,7 @@ export type TSubscr = {
 export type TSubscrResponse = {
   success: boolean;
   results: TSubscr[];
+  msg?: string;
 };
 
 export type TSubscrRequest = {
@@ -47,7 +48,7 @@ export type TChargeDetail = {
 
 export type TCharge = {
   ChargeId: number;
-  SubscrId: number;
+  SubscrId: string;
   Period: number;
   PeriodName: string;
   DebtByBeginMonth: number;
@@ -60,18 +61,19 @@ export type TCharge = {
 export type TChargeResponse = {
   success: boolean;
   results: TCharge[];
+  msg?: string;
 };
 
 export type TChargeRequest = {
   ExtToken: string;
-  PeriodBegin: number;
-  PeriodEnd: number;
+  PeriodBegin: string;
+  PeriodEnd: string;
 };
 
 // Payment
 export type TPayment = {
   PaymenId: number;
-  SubscrId: number;
+  SubscrId: string;
   Date: string;
   PostDate: string;
   Period: number;
@@ -83,12 +85,13 @@ export type TPayment = {
 
 export type TPaymentResponse = {
   success: boolean;
-  result: TPayment[];
+  results: TPayment[];
+  msg?: string;
 };
 
 export type TPaymentRequest = {
   ExtToken: string;
-  subscrId: number;
-  PeriodBegin: number;
-  PeriodEnd: number;
+  SubscrId: string;
+  PeriodBegin: string;
+  PeriodEnd: string;
 };

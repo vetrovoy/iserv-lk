@@ -3,8 +3,10 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 import { TSubscr } from "../../api/types";
+
 import { Paragraph } from "../../ui/typography/Paragraph";
 import { Button } from "../../ui/button/Button";
+
 import { routeNames } from "../../routes/routes";
 
 const SubscrsCardComponent = styled.div`
@@ -44,8 +46,6 @@ const SubscrsCardContent = styled.div`
 
 export const SubscrsCard: FC<TSubscr> = ({
   SubscrId,
-  OrgId,
-  SubscrCode,
   FIO,
   Address,
 }: TSubscr) => {
@@ -64,9 +64,6 @@ export const SubscrsCard: FC<TSubscr> = ({
         <SubscrsCardContent>
           <Link to={`${routeNames.PAYMENTS}${SubscrId}`}>
             <Button>История оплаты</Button>
-          </Link>
-          <Link to={`${routeNames.CHARGES}${SubscrId}`}>
-            <Button>Начисления</Button>
           </Link>
         </SubscrsCardContent>
       </FlexContainer>

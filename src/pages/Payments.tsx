@@ -10,7 +10,7 @@ export const Payments = () => {
   return (
     <>
       <Title style={{ marginBottom: 20 }}>Платежи</Title>
-      {slug && token && <PaymentsList ExtToken={token} id={parseInt(slug)} />}
+      {slug && token && <PaymentsList ExtToken={token} id={slug} />}
     </>
   );
 };

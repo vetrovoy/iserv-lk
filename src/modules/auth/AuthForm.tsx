@@ -115,7 +115,7 @@ export const AuthForm: FC = () => {
         navigate(routeNames.SUBSCRS);
       } else {
         setStatus("error");
-        setMsg(auth?.msg || "");
+        setMsg(auth?.msg || "Непредвиденная ошибка");
       }
     } catch (error) {
       console.log(error);

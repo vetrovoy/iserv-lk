@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { helpers } from "../../helpers/helpers";
 
-import userReducers from "./payments-period-reducers";
+import userReducers from "./period-reducers";
 
 export type TPeriod = {
   begin: string;
@@ -10,25 +10,30 @@ export type TPeriod = {
 };
 
 export interface IInitialPeriodState {
-  period: TPeriod;
+  paymentsPeriod: TPeriod;
+  chargesPeriod: TPeriod;
 }
 
 const lastSixMonths = helpers.getLastSixMonths();
 
 const initialState: IInitialPeriodState = {
-  period: {
+  paymentsPeriod: {
+    begin: lastSixMonths[0],
+    end: lastSixMonths[5],
+  },
+  chargesPeriod: {
     begin: lastSixMonths[0],
     end: lastSixMonths[5],
   },
 };
 
-const paymentsPeriod = createSlice({
-  name: "paymentsPeriod",
+const period = createSlice({
+  name: "period",
   initialState,
   reducers: {
     ...userReducers,
   },
 });
 
-export const paymentsPeriodActions = paymentsPeriod.actions;
-export const paymentsPeriodReducer = paymentsPeriod.reducer;
+export const periodActions = period.actions;
+export const periodReducer = period.reducer;

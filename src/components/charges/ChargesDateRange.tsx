@@ -9,18 +9,18 @@ import { periodActions } from "../../store/user/period";
 import InputDateRange from "../form/inputDateRange";
 import { formatters } from "../../helpers/formatters";
 
-export const PaymentsDateRange = () => {
+export const ChargesDateRange = () => {
   const dispatch = useTypedDispatch();
-  const period = useTypedSelector((state) => state.period.paymentsPeriod);
+  const period = useTypedSelector((state) => state.period.chargesPeriod);
 
   const handleBeginDateChange = (event: ChangeEvent<HTMLInputElement>) => {
     const period = formatters.ISOToPeriod(event.target.value);
-    dispatch(periodActions.setPaymentsBegin(period));
+    dispatch(periodActions.setChargesBegin(period));
   };
 
   const handleEndDateChange = (event: ChangeEvent<HTMLInputElement>) => {
     const period = formatters.ISOToPeriod(event.target.value);
-    dispatch(periodActions.setPaymentsEnd(period));
+    dispatch(periodActions.setChargesEnd(period));
   };
 
   return (

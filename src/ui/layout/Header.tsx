@@ -50,9 +50,16 @@ export const Header = () => {
           </Paragraph>
 
           <Menu>
-            <Link to={routeNames.SUBSCRS}>
-              <Paragraph>Список Л/С</Paragraph>
-            </Link>
+            {token && (
+              <>
+                <Link to={routeNames.SUBSCRS}>
+                  <Paragraph>Список Л/С</Paragraph>
+                </Link>
+                <Link to={routeNames.CHARGES}>
+                  <Paragraph>Начисления</Paragraph>
+                </Link>
+              </>
+            )}
             <Button onClick={loginHandler}>{token ? "Выйти" : "Войти"}</Button>
           </Menu>
         </Flex>

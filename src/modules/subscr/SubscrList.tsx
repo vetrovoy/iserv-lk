@@ -4,6 +4,8 @@ import styled from "styled-components";
 import API from "../../api/api";
 import { TSubscr, TSubscrRequest } from "../../api/types";
 import { SubscrsCard } from "../../components/subscrs/subscrsCard";
+import { Spinner } from "../../ui/loaders/Spinner";
+import { Paragraph } from "../../ui/typography/Paragraph";
 
 const FlexContainer = styled.div`
   display: flex;
@@ -12,31 +14,53 @@ const FlexContainer = styled.div`
   gap: 10px;
 `;
 
+type TSubscrListStatus = "success" | "error" | "loading";
+
 const api = new API();
 
 export const SubscrList: FC<TSubscrRequest> = (ExtToken: TSubscrRequest) => {
-  const [subscrs, setSubscrs] = useState<TSubscr[] | null>(null);
+  const [msg, setMsg] = useState<string>("");
+  const [status, setStatus] = useState<TSubscrListStatus>("loading");
+  const [subscrs, setSubscrs] = useState<TSubscr[]>([]);
 
   useEffect(() => {
-    (async () => {
-      if (!ExtToken) return;
-
-      const response = await api.getSubscrs(ExtToken);
-
-      if (!response.success) {
-        setSubscrs(null);
-        return;
+    async function getSubscrs() {
+      if (!ExtToken) {
+        setStatus("error");
+        setMsg("Ошибка авторизации");
       }
 
-      setSubscrs(response.results);
-    })();
+      try {
+        const subscrs = await api.getSubscrs(ExtToken);
+
+        if (!subscrs.success) {
+          setStatus("error");
+          setMsg(subscrs?.msg || "Непредвиденная ошибка");
+          return;
+        }
+
+        setSubscrs(subscrs.results);
+        setStatus("success");
+      } catch (error) {
+        setStatus("error");
+        setMsg("Непредвиденная ошибка");
+      }
+    }
+
+    getSubscrs();
   }, [ExtToken]);
 
   return (
-    <FlexContainer>
-      {subscrs &&
-        subscrs.length > 0 &&
-        subscrs.map((item) => <SubscrsCard key={item.SubscrId} {...item} />)}
-    </FlexContainer>
+    <>
+      {status === "loading" && <Spinner />}
+      {status === "success" && (
+        <FlexContainer>
+          {subscrs.map((sub) => (
+            <SubscrsCard key={sub.SubscrId} {...sub} />
+          ))}
+        </FlexContainer>
+      )}
+      {status === "error" && <Paragraph>{msg}</Paragraph>}
+    </>
   );
 };
