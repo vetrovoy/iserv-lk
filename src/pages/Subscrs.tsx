@@ -1,26 +1,19 @@
-import styled from "styled-components";
-
 import { SubscrList } from "../modules/subscr/SubscrList";
 import { Button } from "../ui/button/Button";
 import { Title } from "../ui/typography/Title";
-
-const Heading = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  margin-bottom: 20px;
-`;
+import { ProtectedRoute } from "../routes/ProtectedRoute";
+import { PageHeading } from "../components/heading/PageHeading";
 
 export const Subscrs = () => {
   const token = localStorage.getItem("token");
 
   return (
-    <>
-      <Heading>
+    <ProtectedRoute>
+      <PageHeading>
         <Title>Список Л/С</Title>
         <Button>Добавить лицевой счет</Button>
-      </Heading>
+      </PageHeading>
       {token && <SubscrList ExtToken={token} />}
-    </>
+    </ProtectedRoute>
   );
 };

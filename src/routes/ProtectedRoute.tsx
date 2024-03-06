@@ -1,6 +1,8 @@
 import { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
 
+import { routeNames } from "./routes";
+
 export const ProtectedRoute = ({
   token,
   children,
@@ -9,8 +11,12 @@ export const ProtectedRoute = ({
   children: ReactNode;
 }) => {
   if (!token) {
-    return <Navigate to="/404" replace />;
+    return <Navigate to={routeNames.AUTH} replace />;
   }
 
-  return <>{children}</>;
+  if (token) {
+    return <>{children}</>;
+  }
+
+  return <Navigate to={routeNames.ERROR} replace />;
 };
