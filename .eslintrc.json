@@ -18,9 +18,10 @@
     "ecmaVersion": "latest",
     "sourceType": "module",
     "project": "./tsconfig.json",
-    "tsconfigRootDir": "src" // added
+    "tsconfigRootDir": "."
   },
   "plugins": ["react", "@typescript-eslint", "prettier", "import"],
+  "ignorePatterns": ["**/db/*.js"],
   "rules": {
     "react/react-in-jsx-scope": ["off"],
     "react/jsx-uses-react": ["off"],
