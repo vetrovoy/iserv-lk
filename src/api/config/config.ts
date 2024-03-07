@@ -1,32 +1,19 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
-import MockAdapter from "axios-mock-adapter";
 
-import { apiRoutes, TRoute, TEndpoint } from "../routes/apiRoutes";
+import { TEndpoint } from "../routes/apiRoutes";
 
 type IConfig = {
   request: (endpoint: TEndpoint, data: object) => Promise<AxiosResponse>;
-  cleanup: () => void;
   throttle: () => void;
 };
 
 export class Config implements IConfig {
-  private readonly API_ROOT = process.env.API_ROOT || "http://localhost:3000";
+  private readonly API_ROOT =
+    process.env.API_ROOT || "http://localhost:3001/Ext";
   private instance: AxiosInstance;
-  private mock: MockAdapter;
 
   constructor() {
     this.instance = axios.create();
-    this.mock = new MockAdapter(this.instance);
-
-    this.init();
-  }
-
-  private init() {
-    // Init mock endpoints
-    apiRoutes.forEach((route: TRoute) => {
-      const apiEndpoint = this.API_ROOT + route.matcher;
-      this.mock.onPost(apiEndpoint).reply(route.status, route.data);
-    });
   }
 
   public async request<T>(
@@ -34,7 +21,8 @@ export class Config implements IConfig {
     data: object,
   ): Promise<AxiosResponse<T>> {
     try {
-      const apiEndpoint = this.API_ROOT + endpoint;
+      const apiEndpoint = this.API_ROOT + "/" + endpoint;
+      console.log(apiEndpoint);
       const response = await this.instance.post(apiEndpoint, data);
       return response;
     } catch (error) {
@@ -50,9 +38,5 @@ export class Config implements IConfig {
 
   public async throttle() {
     await new Promise((resolve) => setTimeout(resolve, 1000));
-  }
-
-  public cleanup() {
-    this.mock.restore();
   }
 }

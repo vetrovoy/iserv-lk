@@ -1,8 +1,3 @@
-import LogOnExtData from "../db/Ext/LogOnExt/index.json";
-import GetChargesExtData from "../db/Ext/GetChargesExt/index.json";
-import GetPaymentsExtData from "../db/Ext/GetPaymentsExt/index.json";
-import GetSubscrsExtData from "../db/Ext/GetSubscrsExt/index.json";
-
 type IEndpoints = {
   LogOnExt: string;
   GetChargesExt: string;
@@ -17,28 +12,3 @@ export type TRoute = {
   data: object;
   status: number;
 };
-
-const apiRoutes: TRoute[] = [
-  {
-    matcher: "LogOnExt",
-    data: LogOnExtData,
-    status: 200,
-  },
-  {
-    matcher: "GetChargesExt",
-    data: GetChargesExtData,
-    status: 200,
-  },
-  {
-    matcher: "GetPaymentsExt",
-    data: GetPaymentsExtData,
-    status: 200,
-  },
-  {
-    matcher: "GetSubscrsExt",
-    data: GetSubscrsExtData,
-    status: 200,
-  },
-];
-
-export { apiRoutes };

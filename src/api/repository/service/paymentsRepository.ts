@@ -18,19 +18,7 @@ export class PaymentsRepository extends Config {
         PeriodEnd,
       });
 
-      const filtered = response.data.results.filter(
-        (payment) =>
-          payment.Period >= parseInt(PeriodBegin) &&
-          payment.Period <= parseInt(PeriodEnd) &&
-          payment.SubscrId === SubscrId,
-      );
-
-      const result = {
-        success: response.data.success,
-        results: filtered,
-      };
-
-      return result;
+      return response.data;
     } catch (error) {
       throw error;
     }

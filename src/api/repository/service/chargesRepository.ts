@@ -16,18 +16,7 @@ export class ChargesRepository extends Config {
         PeriodEnd,
       });
 
-      const filtered = response.data.results.filter(
-        (item) =>
-          item.Period >= parseInt(PeriodBegin) &&
-          item.Period <= parseInt(PeriodEnd),
-      );
-
-      const result = {
-        success: response.data.success,
-        results: filtered,
-      };
-
-      return result;
+      return response.data;
     } catch (error) {
       throw error;
     }
