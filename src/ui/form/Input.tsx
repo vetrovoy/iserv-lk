@@ -32,7 +32,7 @@ const Flex = styled.div`
 
 const InputStyled = styled.input<{
   width?: CSSProp;
-  marginBottom?: CSSProp;
+  marginbottom?: CSSProp;
   status: TFieldStatus;
 }>`
   border: 1px solid ${(props) => STATUS_STYLES[props.status]};
@@ -40,14 +40,14 @@ const InputStyled = styled.input<{
   box-shadow: 0px 0px 6px 0px rgba(111, 120, 130, 0.2);
   padding: 14px 20px;
   outline: none;
-  margin-bottom: ${(props) => (props?.marginBottom ? props.marginBottom : "0")};
+  margin-bottom: ${(props) => (props?.marginbottom ? props.marginbottom : "0")};
   width: ${(props) => (props?.width ? props?.width : "auto")};
 `;
 
 export interface IInput extends InputHTMLAttributes<HTMLInputElement> {
   rules?: (value: string) => boolean;
   onValueChange?: ({ name, value }: IFieldResult) => void;
-  marginBottom?: string;
+  marginbottom?: string;
   width?: string;
   label?: string;
   icon?: null | ReactNode;

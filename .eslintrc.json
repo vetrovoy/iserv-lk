@@ -20,7 +20,7 @@
     "project": "./tsconfig.json"
   },
   "plugins": ["react", "@typescript-eslint", "prettier", "import"],
-  "ignorePatterns": ["**/db/*.js"],
+  "ignorePatterns": ["**/db/**/*.js"],
   "rules": {
     "react/react-in-jsx-scope": ["off"],
     "react/jsx-uses-react": ["off"],

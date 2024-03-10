@@ -2,6 +2,7 @@ import { FC, ReactNode } from "react";
 import styled from "styled-components";
 
 const sizes = {
+  sm: "11px",
   md: "13px",
   lg: "18px",
   xl: "23px",

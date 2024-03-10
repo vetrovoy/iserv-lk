@@ -129,7 +129,7 @@ export const AuthForm: FC = () => {
     <AuthFormWrapper>
       <AuthFormComponent>
         <Form msg={msg} status={status} onFormSubmit={onAuthFormSubmit}>
-          <Title marginBottom="20px">Вход</Title>
+          <Title marginbottom="20px">Вход</Title>
           <Input
             label="Почта"
             rules={validation.email}
@@ -137,7 +137,7 @@ export const AuthForm: FC = () => {
             placeholder="email@mail.ru"
             name="email"
             type="email"
-            marginBottom="20px"
+            marginbottom="20px"
             width="100%"
           />
           <InputPassword
@@ -145,7 +145,7 @@ export const AuthForm: FC = () => {
             rules={validation.length}
             onValueChange={onPasswordChange}
             width="100%"
-            marginBottom="20px"
+            marginbottom="20px"
           />
           <Button disabled={isCanSendForm} type="submit">
             Войти

@@ -55,6 +55,8 @@ export const SubscrsCard: FC<TSubscr> = ({
         Л/С: {SubscrId}
       </Paragraph>
 
+      <Paragraph size="sm">К оплате: 0</Paragraph>
+
       <FlexContainer>
         <SubscrsCardContent>
           <Paragraph>{Address} </Paragraph>
