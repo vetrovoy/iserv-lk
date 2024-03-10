@@ -40,7 +40,7 @@ export const PaymentsList: FC<TPaymentsList> = ({
       setStatus("loading");
 
       try {
-        const payments = await api.getPayments({
+        const payments = await api.payments.getPayments({
           ExtToken: ExtToken,
           SubscrId: id,
           PeriodBegin: period.begin,

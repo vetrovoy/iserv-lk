@@ -34,7 +34,7 @@ export const ChargesList: FC<TChargesList> = ({ ExtToken }: TChargesList) => {
       }
 
       try {
-        const charges = await api.getCharges({
+        const charges = await api.charges.getCharges({
           ExtToken: ExtToken,
           PeriodBegin: period.begin,
           PeriodEnd: period.end,

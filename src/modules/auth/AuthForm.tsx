@@ -104,7 +104,7 @@ export const AuthForm: FC = () => {
     try {
       if (!form.email.value || !form.password.value) return;
 
-      const auth = await api.logOn({
+      const auth = await api.user.logOn({
         Username: form.email.value,
         Password: form.password.value,
       });

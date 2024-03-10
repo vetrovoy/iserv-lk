@@ -31,7 +31,7 @@ export const SubscrList: FC<TSubscrRequest> = (ExtToken: TSubscrRequest) => {
       }
 
       try {
-        const subscrs = await api.getSubscrs(ExtToken);
+        const subscrs = await api.subscr.getSubscrs(ExtToken);
 
         if (!subscrs.success) {
           setStatus("error");
